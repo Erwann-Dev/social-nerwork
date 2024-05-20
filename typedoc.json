@@ -1,0 +1,9 @@
+{
+  "entryPoints": ["app/**/*.ts"],
+  "out": "docs",
+  "includeVersion": true,
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeNotDocumented": true
+}

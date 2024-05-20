@@ -1,7 +1,15 @@
 import User from '#models/user'
 import { HttpContext } from '@adonisjs/core/http'
 
+/**
+ * AuthController handles the authentication logic
+ */
 export default class AuthController {
+  /**
+   * Registers a new user
+   * @param {HttpContext} ctx - The context object containing request and response
+   * @returns {Promise<void>} - A promise that resolves to void
+   */
   async register({ request, auth, response }: HttpContext) {
     const { username, email, password } = request.only(['username', 'email', 'password'])
 
@@ -16,6 +24,11 @@ export default class AuthController {
     return response.created({ message: 'User registered successfully' })
   }
 
+  /**
+   * Logs in a user
+   * @param {HttpContext} ctx - The context object containing request and response
+   * @returns {Promise<void>} - A promise that resolves to void
+   */
   async login({ request, auth, response }: HttpContext) {
     const { email, password } = request.only(['email', 'password'])
 
@@ -30,6 +43,11 @@ export default class AuthController {
     }
   }
 
+  /**
+   * Logs out a user
+   * @param {HttpContext} ctx - The context object containing request and response
+   * @returns {Promise<void>} - A promise that resolves to void
+   */
   async logout({ auth, response }: HttpContext) {
     await auth.use('web').logout()
     return response.ok({ message: 'Logged out successfully' })
