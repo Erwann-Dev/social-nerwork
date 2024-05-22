@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["app/**/*.ts"],
+  "entryPoints": ["app/**/*.ts", "start/*.ts"],
   "out": "docs",
   "includeVersion": true,
   "excludeExternals": true,

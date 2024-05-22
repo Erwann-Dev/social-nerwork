@@ -1,24 +1,60 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import {DateTime} from 'luxon'
+import {BaseModel, belongsTo, column} from '@adonisjs/lucid/orm'
 import User from '#models/user'
 import * as relations from '@adonisjs/lucid/types/relations'
 
+/**
+ * Picture model
+ * @extends BaseModel
+ * @example
+ * const picture = new Picture()
+ * picture.id = 1
+ * picture.altDesc = 'This is a picture'
+ * picture.file = 'https://example.com/picture.jpg'
+ * picture.createdBy = 1
+ * picture.createdAt = DateTime.local()
+ * await picture.save()
+ */
 export default class Picture extends BaseModel {
-  @column({ isPrimary: true })
-  declare id: number
+  /**
+   * The primary key of the table
+   * @type {number}
+   * @memberof Picture
+   */
+  @column({isPrimary: true}) declare id: number
 
-  @column()
-  declare altDesc: string | null
+  /**
+   * The alt description of the picture
+   * @type {string}
+   * @memberof Picture
+   */
+  @column() declare altDesc: string | null
 
-  @column()
-  declare file: string
+  /**
+   * The file path of the picture
+   * @type {string}
+   * @memberof Picture
+   */
+  @column() declare filePath: string
 
-  @column()
-  declare createdBy: number
+  /**
+   * The ID of the user who created the picture
+   * @type {number}
+   * @memberof Picture
+   */
+  @column() declare createdBy: number
 
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
+  /**
+   * The date and time the picture was created
+   * @type {DateTime}
+   * @memberof Picture
+   */
+  @column.dateTime({autoCreate: true}) declare createdAt: DateTime
 
-  @belongsTo(() => User)
-  declare user: relations.BelongsTo<typeof User>
+  /**
+   * The user who created the picture
+   * @type {BelongsTo<typeof User>}
+   * @memberof Picture
+   */
+  @belongsTo(() => User) declare user: relations.BelongsTo<typeof User>
 }
